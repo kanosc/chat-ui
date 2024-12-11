@@ -21,7 +21,8 @@ const useStore = defineStore("chat", () => {
   const status = ref("idle");
 
   // app data refs
-  // data refs
+  // data refs 
+  // 从defaults.ts中的变量获取值
   const user: Ref<IUser | undefined> = ref(defaults.user);
   const conversations: Ref<IConversation[]> = ref(defaults.conversations || []);
   const notifications: Ref<INotification[]> = ref(defaults.notifications || []);

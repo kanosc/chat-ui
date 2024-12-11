@@ -19,6 +19,7 @@ const store = useStore();
 
 const container: Ref<HTMLElement | null> = ref(null);
 
+// 从父组件使用的provide函数注入
 const activeConversation = <IConversation>inject("activeConversation");
 
 // checks whether the previous message was sent by the same user.
@@ -59,6 +60,7 @@ onMounted(() => {
     ref="container"
     class="grow px-5 py-5 flex flex-col overflow-y-scroll scrollbar-hidden"
   >
+  <!-- 遍历activeConversation中的全部消息并展示 -->
     <div
       v-if="store.status !== 'loading'"
       v-for="(message, index) in activeConversation.messages"
