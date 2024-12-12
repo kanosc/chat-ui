@@ -21,6 +21,7 @@ import ScaleTransition from "@src/components/ui/transitions/ScaleTransition.vue"
 import ReplyMessage from "@src/components/views/HomeView/Chat/ChatBottom/ReplyMessage.vue";
 import EmojiPicker from "@src/components/ui/inputs/EmojiPicker/EmojiPicker.vue";
 import Textarea from "@src/components/ui/inputs/Textarea.vue";
+import Message from "../ChatMiddle/Message/Message.vue";
 
 const store = useStore();
 
@@ -47,6 +48,33 @@ const handleToggleRecording = () => {
 const handleCancelRecording = () => {
   recording.value = false;
 };
+
+const handleSelectMessage = () => {
+
+};
+
+// 输入框中的消息自动放在 activeConversation.draftMessage
+// TODO: 1 发送消息 2 将消息添加到列表中
+const handleSendMessage = () => {
+//  alert(activeConversation.draftMessage) 
+  activeConversation.messages.push(
+      {
+        id: 9,
+        content: activeConversation.draftMessage,
+        date: "9:30 pm",
+        state: "read",
+        sender: {
+          id: 1,
+          firstName: "Dawn",
+          lastName: "Sabrina",
+          lastSeen: new Date(),
+          email: "sabrina@gmail.com",
+          avatar:
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+        },
+      },
+  )
+}
 
 // close picker when you click outside.
 const handleClickOutside = (event: Event) => {
@@ -115,6 +143,7 @@ onMounted(() => {
             @value-changed="(newValue: string) => (value = newValue)"
             @input="handleSetDraft"
             :value="value"
+            v-model="value"
             auto-resize
             cols="30"
             rows="1"
@@ -197,6 +226,7 @@ onMounted(() => {
         <!--send message button-->
         <IconButton
           v-if="!recording"
+          @click="handleSendMessage"
           class="ic-btn-contained-primary w-7 h-7 active:scale-110"
           title="send message"
           aria-label="send message"
