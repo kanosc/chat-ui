@@ -3,9 +3,14 @@ import { ref } from "vue";
 
 import PasswordInput from "@src/components/ui/inputs/PasswordInput.vue";
 import Button from "@src/components/ui/inputs/Button.vue";
+import router from "@src/router";
 
 const password = ref("");
 const confirmPassword = ref("");
+
+const setPassword = () => {
+  router.push("/chat")
+}
 </script>
 
 <template>
@@ -31,6 +36,7 @@ const confirmPassword = ref("");
     <!--controls-->
     <div class="mb-5">
       <Button class="contained-primary contained-text w-full mb-4"
+      @click="setPassword"
         >Sign up</Button
       >
       <Button
